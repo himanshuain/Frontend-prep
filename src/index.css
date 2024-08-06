@@ -86,6 +86,8 @@ li {
 }
 
 .node {
-  margin: 4px;
+  margin: 8px;
+  padding-left: 8px;
+  border-radius: 4px;
   border: dotted black 1px;
 }
