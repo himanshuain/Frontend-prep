@@ -1,35 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import './App.css'
+import React, {useState} from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+type Node = {
+  name: String;
+  folders?: Node[];
+}
+const filesConfigData = [
+  { name: "C drive",
+  folders:[
+    {
+      name:"Home",
+      folders:[
+        {
+          name: "Music"
+        },
+        {
+          name: "Games",
+          folders:[
+            {name: "GTA1"},
+            {name: "GTA2"},
+            {name: "GTA3"},
+            {name: "GTA4"},
+            {name: "GTA5"},
+          ]
+        }
+      ]
+    }
+
+  ]
+
+},
+
+{
+  name: "D drive"
+},
+{name: "Resume.pdf"}
+]
+const App = () => {
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
+      <ul className="files-container px-16">
+        {filesConfigData.map((node, index) => 
+        <li key={index} className="node mb-2"><FileSystem node={node} /></li>
+        )}
+      </ul>
     </>
   )
 }
 
-export default App
+const FileSystem: React.FC<{node: Node}> =({node})=>{
+  const [isOpen, setIsOpen] = useState(false);
+  return(
+    <>
+    <button onClick={()=> {if(node?.folders) {setIsOpen(!isOpen)} }}>
+    {
+      node?.folders && <span>{!isOpen? ">" : "#"}</span>
+    }
+    {node?.name}
+      </button>
+   
+    {isOpen && node?.folders && 
+    node.folders.map((nestedNode, index) => {
+      return (
+        <li className="node pl-5" key={index}>
+        <FileSystem node={nestedNode} />
+        </li>
+      )
+    }
+  )}
+  </>
+  )
+}
+
+
+export default App;
