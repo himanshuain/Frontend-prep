@@ -73,8 +73,8 @@ button:focus-visible {
 } */
 
 :root{
-  background-color: white;
-  color: #1a1a1a;
+  background-color: rgb(11, 11, 43);
+  color: white;
 }
 .files-container{
   margin: 2rem;
@@ -90,4 +90,198 @@ li {
   padding-left: 8px;
   border-radius: 4px;
   border: dotted black 1px;
+}
+
+.avatar-picker-container {
+  width: fit-content;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  margin: 4px;
+  background-color: antiquewhite;
+  border-radius: 50%;
+  position: relative; /* Make sure the pseudo-element is positioned relative to this container */
+}
+
+.avatar.new-active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #3498db;
+  border-color: #3498db #3498db transparent transparent;
+  border-radius: 50%;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+.avatar.active:not(.avatar.new-active) {
+  border: solid #3498db 3px;
+}
+
+.avatar:hover:not(.avatar.new-active) {
+  border: solid #3498db 3px;
+}
+
+
+.avatar-selector {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px;
+  margin: 8px;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: #2c3e50;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(50px); /* Start off-screen */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, visibility 0s 0.5s;
+}
+
+.avatar-selector.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Move to final position */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, visibility 0s 0s;
+}
+
+.avatar-selector::before {
+  content: "";
+  width: 0;
+  height: 0;
+  margin-top: 7px;
+  border-style: solid;
+  border-width: 0 8px 8px 8px; /* Adjust the width and height to create the arrow shape */
+  border-color: transparent transparent #2c3e50 transparent;
+  transform: translateY(-22px);
+  position: absolute;
+}
+
+.resizable-box {
+  position: relative;
+  background-color: #f0f0f0;
+  /* border: 1px solid transparent; */
+  overflow: hidden;
+  user-select: none; /* Prevent text selection while dragging */
+}
+
+.content {
+  padding: 20px;
+  text-align: center;
+}
+
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  width: 2px;
+  height: 100%;
+  cursor: ew-resize;
+  background-color: rgb(247, 5, 5);
+}
+
+.resizer:hover {
+  opacity: 1;
+}
+
+.chart-container {
+  display: flex;
+  margin-top: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart {
+  display: flex;
+  position: relative;
+  width: fit-content;
+  border: solid white 2px;
+  border-color: transparent transparent white white;
+  margin: 45px;
+  gap: 30px;
+  justify-content: space-around;
+  align-items: flex-end;
+  visibility: hidden;
+}
+
+.toggle-chart {
+  padding: 4px 8px;
+  margin: 4px;
+  background-color: #0a2034;
+  border-radius: 10px;
+}
+
+@keyframes heightAnimate {
+  from {
+    height: 0;
+  }
+  to {
+    height: 1;
+  }
+}
+
+.department {
+  width: 50px;
+  position: relative;
+}
+
+.department::before{
+  content: attr(department-tooltip);
+  opacity: 0;
+  bottom: 100%;
+  font-size: xx-small; 
+  padding: 5px;
+  width: max-content;
+  z-index: 1;
+  background-color: black;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  position: absolute;
+}
+
+.department:hover::before {
+  opacity: 1;
+}
+
+
+.department.show {
+  animation: heightAnimate 1s ease-in-out;
+}
+
+.chart.show {
+  visibility: visible;
+}
+
+.chart::before {
+  content: "Number of tickets";
+  position: absolute;
+  top: 50%;
+  left: -80px;
+  transform: translateY(-50%) rotate(-90deg);
+  /* transform-origin: 'center center'; */
+}
+
+.chart::after {
+  content: "Departments";
+  position: absolute;
+  bottom: -15px;
+  transform: translateY(50%);
 }

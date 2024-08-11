@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 type Node = {
-    name: String;
+    name: string;
     folders?: Node[];
   }
   const filesConfigData = [
