@@ -79,8 +79,8 @@ const AvatarSelector = ({ className, setSelectedAvatar, currentAvatar, setShowPo
     const [newActiveClass, setNewActiveClass] = useState("");
     const [newSelectedAvtar, setNewSelectedAvatar]= useState({});
 
-    const handleSetAvatar= (e) => {
-        const selectedId = e?.target?.getAttribute("data-id");
+    const handleSetAvatar= (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const selectedId = e.target.getAttribute("data-id");
         if(!selectedId || selectedId === currentAvatar.id ) return;
         setNewActiveClass("new-active");
         setNewSelectedAvatar(selectedId);

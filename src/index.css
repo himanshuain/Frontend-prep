@@ -240,12 +240,17 @@ li {
 
 .department {
   width: 50px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  
   position: relative;
 }
 
 .department::before{
   content: attr(department-tooltip);
   opacity: 0;
+  text-align: center;
   bottom: 100%;
   font-size: xx-small; 
   padding: 5px;
@@ -284,4 +289,112 @@ li {
   position: absolute;
   bottom: -15px;
   transform: translateY(50%);
+}
+
+
+.p-container {
+  border: solid #3498db 2px;
+  border-radius: 8px;
+  margin: 2px;
+  padding: 4px;
+  height: 400px;
+  /* width: 500px; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'sidebar header'
+    'sidebar main';
+  /* gap: 10px; */
+  row-gap: 32px;
+  /* place-content: center; */
+  /* justify-content: end; */
+  /* justify-items: stretch; */
+  /* align-items: center; */
+  /* align-content: end; */
+  /* aspect-ratio: 1/1; */
+}     
+
+.c-container {
+  /* border: solid grey 2px; */
+  /* border-radius: 8px; */
+  /* aspect-ratio: 1/1; */
+  padding: 4px;
+}
+
+/* .box {
+  grid-row: 1;
+  grid-column: -1;
+  background-color: #3498db;
+} */
+
+.header {
+  /* border: solid #0e7ce3 2px; */
+  /* display: block; */
+  /* justify-self: center; */
+  display: flex;
+  align-items: end;
+  /* justify-content: flex-end; */
+  /* flex-direction: column; */
+  /* gap: 10px; */
+  /* top: 30px; */
+  /* position: absolute; */
+  /* grid-column: 2;
+  grid-row: 1; */
+  grid-area: header;
+
+}
+
+.sidebar {
+  grid-area: sidebar;
+  /* grid-row: 1/3;
+  grid-column: 1; */
+  border: solid #0e7ce3 2px;
+}
+
+.main {
+  grid-area: main;
+  border: solid #0e7ce3 2px;
+  /* position: sticky;
+  bottom: 0; */
+  /* margin-bottom: 10px; */
+  align-self: end;
+  justify-self: end;
+  /* grid-column: 2;
+  grid-row: 2; */
+}
+
+.p-container > * , .header, span  {
+  border: solid red 2px;
+  margin: 10px;
+  padding: 2px;
+  border-radius: 8px;
+}
+
+.boxes {
+  display: grid;
+  border: solid red 2px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.box {
+  max-width: 150px;
+  opacity: 1;
+  /* height: 150px; */
+  border: solid red 2px;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  padding: 4px;
+  display: grid;
+  place-content: center;
+  transition: opacity 300ms;
+  
+}
+
+.box.hiddenBox {
+  opacity: 0;
+  cursor: default;
 }

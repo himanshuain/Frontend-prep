@@ -1,19 +1,19 @@
 // import AvatarPicker from "./AvatarPicker";
-import BarChart from "./BarChart";
+// import { useState } from "react";
+import { HideBoxes } from "./HideBoxes";
+// import BarChart from "./BarChart";
 // import ResizableBox from "./ResizeBox";
 // import FileSystemUsingRecursion from "./FileSysUsingRecursion";
 
-
+// const arr = Array(10).fill("hello");
 
 const App = ()=>{
-  return(
-    <>
-    <BarChart />
-    {/* <AvatarPicker/>
-    <ResizableBox><div>Resizable box</div></ResizableBox>
-    <FileSystemUsingRecursion/> */}
-    </>
+ 
+
+   return ( 
+  <HideBoxes />
   )
+  
 }
 
 
