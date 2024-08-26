@@ -1,17 +1,16 @@
 // import AvatarPicker from "./AvatarPicker";
 // import { useState } from "react";
-import { HideBoxes } from "./HideBoxes";
-// import BarChart from "./BarChart";
-// import ResizableBox from "./ResizeBox";
-// import FileSystemUsingRecursion from "./FileSysUsingRecursion";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 
-// const arr = Array(10).fill("hello");
+import { CheckoutCounterQueue } from "./CheckoutCounterQueue";
 
-const App = ()=>{
+const App = ()=> {
  
-
    return ( 
-  <HideBoxes />
+    <>
+    <CheckoutCounterQueue/>
+    </>
   )
   
 }
